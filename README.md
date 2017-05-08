@@ -1,6 +1,6 @@
 # jump3r
 
-A copy of an inofficial LAME mp3 library port to Java from 
+A copy of an inofficial LAME mp3 library port to Java from https://sourceforge.net/projects/jump3r/
 
 I put this here for future consideration. Mp3 actually sucks and has shitty license and patent things attached to it, even though Fraunhofer seems to have run out of patents by April 2017.
 So I probably just use C-lame as a terminal command.
