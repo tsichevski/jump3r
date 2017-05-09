@@ -1,6 +1,6 @@
 # jump3r
 
-A copy of an inofficial LAME mp3 library port to Java from https://sourceforge.net/projects/jump3r/
+A copy of an unofficial LAME mp3 library port to Java from https://sourceforge.net/projects/jump3r/
 
 The following changes have been made to the project:
 
@@ -8,6 +8,14 @@ The following changes have been made to the project:
 - moving from LGPL v2+ to LGPL v2.1+
 - removed UI (Swing) module
 - remove JMA API dependency
+- give it a proper namespace - packages are in `de.sciss.jump3r`
+- main class is now `de.sciss.jump3r.Main`
+
+For simplicity, the `sbt` shell script [by Paul Phillips](https://github.com/paulp/sbt-extras) is included, 
+which is released under BSD 3-clause License. So you use `./sbt` and do not need to install sbt.
+
+- to compile: `sbt compile`
+- to create self-contained jar: `sbt assembly`
 
 Below are the original README and USAGE (adapted for markdown).
 
