@@ -32,14 +32,12 @@ import mpg.Common;
 import mpg.Interface;
 import mpg.MPGLib;
 
-import org.jma.encoder.audio.IAudioEncoder;
-
 /**
  * Wrapper for the jump3r encoder.
  * 
  * @author Ken Handel
  */
-public class LameEncoder implements IAudioEncoder{
+public class LameEncoder /* implements org.jma.encoder.audio.IAudioEncoder */ {
 
 	public static final AudioFormat.Encoding MPEG1L3 = new AudioFormat.Encoding(
 			"MPEG1L3");
