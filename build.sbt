@@ -19,6 +19,11 @@ lazy val commonJavaOptions = Seq("-source", "1.6")
 javacOptions        := commonJavaOptions ++ Seq("-target", "1.6", "-g", "-Xlint:deprecation")
 javacOptions in doc := commonJavaOptions  // cf. sbt issue #355
 
+// ---- assembly ----
+mainClass       in assembly := Some("de.sciss.jump3r.Main")
+assemblyJarName in assembly := s"${name.value}.jar"
+target          in assembly := baseDirectory.value
+
 // ---- publishing to Maven Central ----
 publishMavenStyle := true
 
@@ -39,6 +44,11 @@ pomExtra := { val n = name.value
     <connection>scm:git:git@github.com:Sciss/{n}.git</connection>
   </scm>
   <developers>
+    <developer>
+      <id>lame</id>
+      <name>The L.A.M.E. project</name>
+      <url>http://lame.sourceforge.net/</url>
+    </developer>
     <developer>
       <id>kenchis</id>
       <name>Ken Händel</name>
