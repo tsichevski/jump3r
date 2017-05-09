@@ -227,11 +227,13 @@ public class Main {
 								skip_end);
 		}
 
-		System.out.print("|");
-		for (int j = 0; j < MAX_WIDTH - 2; j++) {
-			System.out.print("=");
+		if (parse.silent <= 0) {
+			System.out.print("|");
+			for (int j = 0; j < MAX_WIDTH - 2; j++) {
+				System.out.print("=");
+			}
+			System.out.println("|");
 		}
-		System.out.println("|");
 		oldPercent = curPercent = oldConsoleX = 0;
 
 		if (!parse.disable_wav_header)
@@ -318,11 +320,13 @@ public class Main {
 			rf.close();
 		}
 
-		System.out.print("|");
-		for (int j = 0; j < MAX_WIDTH - 2; j++) {
-			System.out.print("=");
+		if (parse.silent <= 0) {
+			System.out.print("|");
+			for (int j = 0; j < MAX_WIDTH - 2; j++) {
+				System.out.print("=");
+			}
+			System.out.println("|");
 		}
-		System.out.println("|");
 	}
 
 	private void print_lame_tag_leading_info(final LameGlobalFlags gf) {

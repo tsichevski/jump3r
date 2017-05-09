@@ -1,15 +1,10 @@
 name              := "jump3r"
 organization      := "de.sciss"
-version           := "1.0.4-SNAPSHOT"
-scalaVersion      := "2.12.2"
+version           := "1.0.4"
+scalaVersion      := "2.11.11"  // not used; travis can build with OpenJDK 6 under Scala 2.11 (not Scala 2.12)
 licenses          := Seq("LGPL v2.1+" -> url("https://www.gnu.org/licenses/lgpl-2.1.txt"))
 crossPaths        := false
 autoScalaLibrary  := false
-
-// libraryDependencies ++= Seq(
-//   "de.sciss"     % "jawjaw"          % "0.1.0",
-//   "com.novocode" % "junit-interface" % "0.11" % "test"
-// )
 
 homepage          := Some(url(s"https://github.com/Sciss/${name.value}"))
 description       := "Java Unofficial MP3 EncodeR - a Java port of LAME"
