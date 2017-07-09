@@ -301,7 +301,7 @@ public class LameEncoder /* implements org.jma.encoder.audio.IAudioEncoder */ {
 		if (outSampleRate>=0)
 			gfp.out_samplerate = outSampleRate;
 		if (mode != CHANNEL_MODE_AUTO) {
-			gfp.mode = Enum.valueOf(MPEGMode.class, chmode2string(mode));
+            gfp.mode = MPEGMode.values()[mode];
 		}
 		if (VBR) {
 			gfp.VBR = VbrMode.vbr_default;

@@ -1,6 +1,6 @@
 name              := "jump3r"
 organization      := "de.sciss"
-version           := "1.0.4"
+version           := "1.0.5-SNAPSHOT"
 scalaVersion      := "2.11.11"  // not used; travis can build with OpenJDK 6 under Scala 2.11 (not Scala 2.12)
 licenses          := Seq("LGPL v2.1+" -> url("https://www.gnu.org/licenses/lgpl-2.1.txt"))
 crossPaths        := false
