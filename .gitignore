@@ -1,8 +1,1 @@
-target/
-lib_managed/
-src_managed/
-project/boot/
-.idea/
-.idea_modules/
-.history
-/jump3r.jar
+/target/

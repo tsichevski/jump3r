@@ -32,6 +32,8 @@ package de.sciss.jump3r.mp3;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
+import org.eclipse.jdt.annotation.Nullable;
+
 public class ID3Tag {
 
 	BitStream bits;
@@ -314,7 +316,7 @@ public class ID3Tag {
 		return bytesPos + 4;
 	}
 
-	private int toID3v2TagId(final String s) {
+	private static int toID3v2TagId(@Nullable String s) {
 		int i, x = 0;
 		if (s == null) {
 			return 0;
@@ -333,7 +335,7 @@ public class ID3Tag {
 		return x;
 	}
 
-	private boolean isNumericString(final int frame_id) {
+	private static boolean isNumericString(final int frame_id) {
 		if (frame_id == ID_DATE || frame_id == ID_TIME || frame_id == ID_TPOS
 				|| frame_id == ID_TRACK || frame_id == ID_YEAR) {
 			return true;
@@ -341,7 +343,7 @@ public class ID3Tag {
 		return false;
 	}
 
-	private boolean isMultiFrame(final int frame_id) {
+	private static boolean isMultiFrame(final int frame_id) {
 		if (frame_id == ID_TXXX || frame_id == ID_WXXX
 				|| frame_id == ID_COMMENT || frame_id == ID_SYLT
 				|| frame_id == ID_APIC || frame_id == ID_GEOB
@@ -353,14 +355,14 @@ public class ID3Tag {
 		return false;
 	}
 
-	private boolean hasUcs2ByteOrderMarker(final char bom) {
+	private static boolean hasUcs2ByteOrderMarker(final char bom) {
 		if (bom == 0xFFFE || bom == 0xFEFF) {
 			return true;
 		}
 		return false;
 	}
 
-	private FrameDataNode findNode(final ID3TagSpec tag, final int frame_id,
+	private static FrameDataNode findNode(final ID3TagSpec tag, final int frame_id,
 			final FrameDataNode last) {
 		FrameDataNode node = last != null ? last.nxt : tag.v2_head;
 		while (node != null) {
@@ -372,7 +374,7 @@ public class ID3Tag {
 		return null;
 	}
 
-	private void appendNode(final ID3TagSpec tag, final FrameDataNode node) {
+	private static void appendNode(final ID3TagSpec tag, final FrameDataNode node) {
 		if (tag.v2_tail == null || tag.v2_head == null) {
 			tag.v2_head = node;
 			tag.v2_tail = node;
@@ -382,7 +384,7 @@ public class ID3Tag {
 		}
 	}
 
-	private String setLang(final String src) {
+	private static String setLang(final String src) {
 		int i;
 		if (src == null || src.length() == 0) {
 			return "XXX";
@@ -398,7 +400,7 @@ public class ID3Tag {
 		}
 	}
 
-	private boolean isSameLang(final String l1, final String l2) {
+	private static boolean isSameLang(final String l1, final String l2) {
 		String d = setLang(l2);
 		for (int i = 0; i < 3; ++i) {
 			char a = Character.toLowerCase(l1.charAt(i));
@@ -414,7 +416,7 @@ public class ID3Tag {
 		return true;
 	}
 
-	private boolean isSameDescriptor(final FrameDataNode node, final String dsc) {
+	private static boolean isSameDescriptor(final FrameDataNode node, final String dsc) {
 		if (node.dsc.enc == 1 && node.dsc.dim > 0) {
 			return false;
 		}
@@ -426,7 +428,7 @@ public class ID3Tag {
 		return true;
 	}
 
-	private boolean isSameDescriptorUcs2(final FrameDataNode node,
+	private static boolean isSameDescriptorUcs2(final FrameDataNode node,
 			final String dsc) {
 		if (node.dsc.enc != 1 && node.dsc.dim > 0) {
 			return false;
@@ -439,7 +441,7 @@ public class ID3Tag {
 		return true;
 	}
 
-	private void id3v2_add_ucs2(final LameGlobalFlags gfp, final int frame_id,
+	private static void id3v2_add_ucs2(final LameGlobalFlags gfp, final int frame_id,
 			final String lang, final String desc, final String text) {
 		LameInternalFlags gfc = gfp.internal_flags;
 		if (gfc != null) {
@@ -470,7 +472,7 @@ public class ID3Tag {
 		}
 	}
 
-	private void id3v2_add_latin1(final LameGlobalFlags gfp,
+	private static void id3v2_add_latin1(final LameGlobalFlags gfp,
 			final int frame_id, final String lang, final String desc,
 			final String text) {
 		LameInternalFlags gfc = gfp.internal_flags;
@@ -528,7 +530,7 @@ public class ID3Tag {
 		return -255; /* not supported by now */
 	}
 
-	private int id3tag_set_textinfo_latin1(final LameGlobalFlags gfp,
+	private static int id3tag_set_textinfo_latin1(final LameGlobalFlags gfp,
 			final String id, final String text) {
 		long t_mask = FRAME_ID('T', (char) 0, (char) 0, (char) 0);
 		int frame_id = toID3v2TagId(id);
@@ -547,7 +549,7 @@ public class ID3Tag {
 		return -255; /* not supported by now */
 	}
 
-	public final int id3tag_set_comment(final LameGlobalFlags gfp,
+	public final static int id3tag_set_comment(final LameGlobalFlags gfp,
 			final String lang, final String desc, final String text,
 			final int textPos) {
 		if (gfp != null) {
@@ -578,7 +580,7 @@ public class ID3Tag {
 	}
 
 	public final void id3tag_set_album(final LameGlobalFlags gfp,
-			final String album) {
+			final @Nullable String album) {
 		LameInternalFlags gfc = gfp.internal_flags;
 		if (album != null && album.length() != 0) {
 			gfc.tag_spec.album = album;
@@ -588,10 +590,10 @@ public class ID3Tag {
 	}
 
 	public final void id3tag_set_year(final LameGlobalFlags gfp,
-			final String year) {
+			final @Nullable String year) {
 		LameInternalFlags gfc = gfp.internal_flags;
 		if (year != null && year.length() != 0) {
-			int num = Integer.valueOf(year);
+			int num = Integer.parseInt(year);
 			if (num < 0) {
 				num = 0;
 			}

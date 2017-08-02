@@ -51,7 +51,6 @@ public class LameDecoder {
 		lame = new Lame();
 		gaud = new GetAudio();
 		ga = new GainAnalysis();
-		bs = new BitStream();
 		p = new Presets();
 		qupvt = new QuantizePVT();
 		qu = new Quantize();
@@ -67,7 +66,7 @@ public class LameDecoder {
 		common = new Common();
 
 		lame.setModules(ga, bs, p, qupvt, qu, vbr, ver, id3, mpg);
-		bs.setModules(ga, mpg, ver, vbr);
+    bs = new BitStream(ga, mpg, ver, vbr);
 		id3.setModules(bs, ver);
 		p.setModules(lame);
 		qu.setModules(bs, rv, qupvt, tak);

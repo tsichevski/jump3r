@@ -35,6 +35,8 @@ import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 
+import org.eclipse.jdt.annotation.Nullable;
+
 import de.sciss.jump3r.mpg.MPGLib;
 
 public class GetAudio {
@@ -147,7 +149,7 @@ public class GetAudio {
 	 * @return samples read
 	 */
 	private int get_audio_common(final LameGlobalFlags gfp,
-			final int buffer[][], final short buffer16[][]) {
+			final int buffer @Nullable [][], final short buffer16[][]) {
 		int num_channels = gfp.num_channels;
 		int insamp[] = new int[2 * 1152];
 		short buf_tmp16[][] = new short[2][1152];

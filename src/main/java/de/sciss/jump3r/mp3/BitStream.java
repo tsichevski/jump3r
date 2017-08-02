@@ -25,6 +25,8 @@ package de.sciss.jump3r.mp3;
 
 import java.util.Arrays;
 
+import org.eclipse.jdt.annotation.Nullable;
+
 import de.sciss.jump3r.mpg.MPGLib;
 
 public class BitStream {
@@ -42,8 +44,7 @@ public class BitStream {
 	Version ver;
 	VBRTag vbr;
 
-	public final void setModules(GainAnalysis ga, MPGLib mpg, Version ver,
-			VBRTag vbr) {
+	public BitStream(GainAnalysis ga, MPGLib mpg, Version ver, VBRTag vbr) {
 		this.ga = ga;
 		this.mpg = mpg;
 		this.ver = ver;
@@ -53,7 +54,7 @@ public class BitStream {
 	/**
 	 * Bit stream buffer.
 	 */
-	private byte[] buf;
+	private byte @Nullable [] buf;
 	/**
 	 * Bit counter of bit stream.
 	 */
@@ -70,7 +71,7 @@ public class BitStream {
 	/**
 	 * compute bitsperframe and mean_bits for a layer III frame
 	 */
-	public final int getframebits(final LameGlobalFlags gfp) {
+	public final static int getframebits(final LameGlobalFlags gfp) {
 		final LameInternalFlags gfc = gfp.internal_flags;
 		int bit_rate;
 
@@ -206,7 +207,7 @@ public class BitStream {
 	/**
 	 * write N bits into the header
 	 */
-	private void writeheader(final LameInternalFlags gfc, final int val, int j) {
+	private static void writeheader(final LameInternalFlags gfc, final int val, int j) {
 		int ptr = gfc.header[gfc.h_ptr].ptr;
 
 		while (j > 0) {
@@ -220,7 +221,7 @@ public class BitStream {
 		gfc.header[gfc.h_ptr].ptr = ptr;
 	}
 
-	private int CRC_update(int value, int crc) {
+	private static int CRC_update(int value, int crc) {
 		value <<= 8;
 		for (int i = 0; i < 8; i++) {
 			value <<= 1;
@@ -232,7 +233,7 @@ public class BitStream {
 		return crc;
 	}
 
-	public final void CRC_writeheader(final LameInternalFlags gfc,
+	public final static void CRC_writeheader(final LameInternalFlags gfc,
 			final byte[] header) {
 		int crc = 0xffff;
 		/* (jo) init crc16 for error_protection */
@@ -247,7 +248,7 @@ public class BitStream {
 		header[5] = (byte) (crc & 255);
 	}
 
-	private void encodeSideInfo2(final LameGlobalFlags gfp,
+	private static void encodeSideInfo2(final LameGlobalFlags gfp,
 			final int bitsPerFrame) {
 		final LameInternalFlags gfc = gfp.internal_flags;
 		IIISideInfo l3_side;
@@ -763,7 +764,7 @@ public class BitStream {
 
 		/* save the ReplayGain value */
 		if (gfc.findReplayGain) {
-			final float RadioGain = (float) ga.GetTitleGain(gfc.rgdata);
+			final float RadioGain = ga.GetTitleGain(gfc.rgdata);
 			assert (NEQ(RadioGain, GainAnalysis.GAIN_NOT_ENOUGH_SAMPLES));
 			gfc.RadioGain = (int) Math.floor(RadioGain * 10.0 + 0.5);
 			/* round to nearest */

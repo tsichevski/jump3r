@@ -1,7 +1,7 @@
 package de.sciss.jump3r.mp3;
 
 class ABRPresets {
-	public ABRPresets(final int kbps, final int comp, final int compS,
+	public ABRPresets(@SuppressWarnings("unused") final int kbps, final int comp, final int compS,
 			final int joint, final float fix, final float shThreshold,
 			final float shThresholdS, final float bass, final float sc,
 			final float mask, final float lower, final float curve,

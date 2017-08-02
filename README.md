@@ -4,32 +4,15 @@
 
 ## Statement 
 
-A copy of an unofficial LAME mp3 library port to Java from https://sourceforge.net/projects/jump3r/
+A copy of ther copy of an unofficial LAME mp3 library port to Java from https://sourceforge.net/projects/jump3r/ by Hanns Holger Rutz
 
-I (Hanns Holger Rutz) made the following changes to the project:
+I (Vladimir Tsichevski) made the following changes to the project:
 
-- using sbt for building
-- moving from LGPL v2+ to LGPL v2.1+
-- removed UI (Swing) module
-- remove JMA API dependency
-- give it a proper namespace - packages are in `de.sciss.jump3r`
-- main class is now `de.sciss.jump3r.Main`
-- no progress bar boundaries are printed when using `--quiet`
-  (matching behaviour of most recent LAME)
+- removed sbt build files
+- added Maven artefacts
 
-For simplicity, the `sbt` shell script [by Paul Phillips](https://github.com/paulp/sbt-extras) is included, 
-which is released under BSD 3-clause License. So you use `./sbt` and do not need to install sbt.
-
-- to compile: `sbt compile`
+- to compile: `mvn compile`
 - to create self-contained jar: `sbt assembly`
-
-The Java port is based on LAME 3.98.4. I compared decoding against latest C LAME 3.99.5. They seem identical except
-for a delay difference, with jump3r producing slightly shorter output (576 sample frames with the example file;
-message says this is to compensate codec delay).
-
-This project is published as a Maven artifact to Maven Central (click badge above). To reference from other sbt build:
-
-    "de.sciss" % "jump3r" % "1.0.4"
 
 Below are the original README and USAGE (adapted for markdown).
 

@@ -45,7 +45,6 @@ public class Main {
 	private ID3Tag id3;
 	private Lame lame;
 	private GainAnalysis ga;
-	private BitStream bs;
 	private Presets p;
 	private QuantizePVT qupvt;
 	private Quantize qu;
@@ -619,7 +618,6 @@ public class Main {
 		lame = new Lame();
 		gaud = new GetAudio();
 		ga = new GainAnalysis();
-		bs = new BitStream();
 		p = new Presets();
 		qupvt = new QuantizePVT();
 		qu = new Quantize();
@@ -635,8 +633,8 @@ public class Main {
 		intf = new Interface();
 		common = new Common();
 
+    BitStream bs = new BitStream(ga, mpg, ver, vbr);
 		lame.setModules(ga, bs, p, qupvt, qu, vbr, ver, id3, mpg);
-		bs.setModules(ga, mpg, ver, vbr);
 		id3.setModules(bs, ver);
 		p.setModules(lame);
 		qu.setModules(bs, rv, qupvt, tak);

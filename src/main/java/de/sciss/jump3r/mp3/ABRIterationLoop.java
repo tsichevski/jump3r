@@ -22,7 +22,8 @@ public final class ABRIterationLoop implements IIterationLoop {
 		this.quantize = quantize;
 	}
 
-	public final void iteration_loop(final LameGlobalFlags gfp,
+	@Override
+  public final void iteration_loop(final LameGlobalFlags gfp,
 			final float pe[][], final float ms_ener_ratio[],
 			final III_psy_ratio ratio[][]) {
 		final LameInternalFlags gfc = gfp.internal_flags;
@@ -72,8 +73,8 @@ public final class ABRIterationLoop implements IIterationLoop {
 					 * masking abilities find some good quantization in
 					 * outer_loop
 					 */
-					int ath_over = this.quantize.qupvt.calc_xmin(gfp,
-							ratio[gr][ch], cod_info, l3_xmin);
+					@SuppressWarnings("null")
+          int ath_over = this.quantize.qupvt.calc_xmin(gfp,	ratio[gr][ch], cod_info, l3_xmin);
 					if (0 == ath_over) /* analog silence */
 						targ_bits[gr][ch] = analog_silence_bits[0];
 
