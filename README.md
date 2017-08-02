@@ -1,6 +1,5 @@
 # jump3r
 
-[![Build Status](https://travis-ci.org/Sciss/jump3r.svg?branch=master)](https://travis-ci.org/Sciss/jump3r)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.sciss/jump3r/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.sciss/jump3r)
 
 ## Statement 
